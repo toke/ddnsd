@@ -17,7 +17,7 @@ import (
 
 type Config struct {
 	Listen     string `yaml:"Listen"`
-	BaseUrl    string `yaml:"BaseUrl"`
+	BasePath   string `yaml:"BasePath"`
 	Zone       string `yaml:"Zone"`
 	Nameserver string `yaml:"Nameserver"`
 	TTL        uint32 `yaml:"TTL"`
@@ -45,12 +45,6 @@ type Error interface {
 // /dns/
 // http://127.0.0.1:8080/dns/?ip=127.0.0.3;hostname=test&token=test
 // Fritzbox http://127.0.0.1:8080/dns/?ip=<ipaddr>;hostname=<domain>&token=<pass>
-// dyn.2mydns.com/dyn.asp?username=<username>&password=<pass>&hostname=<domain>&myip=<ipaddr>
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome, %!", r.URL.Path[1:])
-
-}
 
 func main() {
 	path := flag.String("config", "/etc/ddnsd.conf", "path to config file, eg. /home/user/ddnsd.conf")
@@ -71,7 +65,7 @@ func main() {
 
 	dnsupdate := makednsupdate(c)
 
-	http.HandleFunc(c.BaseUrl+"/dns/", dnsupdate)
+	http.HandleFunc(c.BasePath+"/dns/", dnsupdate)
 	http.ListenAndServe(c.Listen, nil)
 }
 
