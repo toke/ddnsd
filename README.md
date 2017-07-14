@@ -32,4 +32,21 @@ Usage:
 `ddnsd --config=configfile.yml`
 
 
+Example systemd service file
+```
+[Unit]
+After=network-online.target
+
+[Service]
+User=ddnsd
+Group=ddnsd
+LimitNOFILE=1024
+ExecStart=/usr/local/bin/ddnsd
+KillMode=control-group
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
 Bugs: maybe many, almost no error handling, crude state
