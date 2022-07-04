@@ -1,6 +1,6 @@
 # Simple RFC2136 update HTTP server
 
-State: Proof of Concept
+State: Worksforme
 
 The purpose of this project is to allow some home routers to
 publish their IP to a RFC2136 Nameserver. ddnsd serves a http
