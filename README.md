@@ -8,7 +8,7 @@ server and responds to get requests and creates a RFC2136 update
 message to update a remote dns server.
 
 Example for Fritzbox:
-`http://example.com:8080/api/dns/?ip=<ipaddr>;hostname=<domain>&token=<pass>`
+`http://example.com:8080/api/dns/?ip=<ipaddr>&hostname=<domain>&token=<pass>`
 
 The given "hostname" or "domainname" sould be relative to the zone specified in
 config file.
@@ -26,7 +26,11 @@ Token: test
 Secret: <secret>
 ```
 
-Usage:
+## Installation
+
+`go install github.com/toke/ddnsd@latest`
+
+## Usage:
 
 
 `ddnsd --config=configfile.yml`
